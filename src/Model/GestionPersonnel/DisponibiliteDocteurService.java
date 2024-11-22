@@ -8,6 +8,8 @@ package Model.GestionPersonnel;
  *
  * @author fridh
  */
+/**/
+/**/
 public interface DisponibiliteDocteurService {
     boolean isDisponible(String docteur);
 }

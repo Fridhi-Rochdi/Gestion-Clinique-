@@ -8,6 +8,7 @@ package Model.GestionPersonnel;
  *
  * @author fridh
  */
+/**/
 @FunctionalInterface
 public interface AjouterDocteurService {
     void ajouterDocteur(String docteur);

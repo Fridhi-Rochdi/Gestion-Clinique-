@@ -10,7 +10,7 @@ package Model.GestionPersonnel;
  */
 import java.util.ArrayList;
 import java.util.List;
-
+/**/
 public class Service implements AjouterDocteurService, SupprimerDocteurService, DisponibiliteDocteurService, ListeDocteursService {
     private String nomService;
     private List<String> listeDocteurs; // Liste des noms des docteurs

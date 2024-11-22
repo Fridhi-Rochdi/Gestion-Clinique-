@@ -3,7 +3,7 @@ package Model.GestionPersonnel;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
+/**/
 public final class Reception extends Personne {
     private String poste;
     private static List<Patient> patientsEnregistres = new ArrayList<>();

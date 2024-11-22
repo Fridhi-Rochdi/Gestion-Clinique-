@@ -16,6 +16,7 @@ public class Urgence {
     public enum NiveauUrgence {
         FAIBLE, MOYEN, GRAVE, CRITIQUE
     }
+    /**/
     // Attributs
     private NiveauUrgence niveauUrgence;
     private int idPatient; // Identifiant du patient
