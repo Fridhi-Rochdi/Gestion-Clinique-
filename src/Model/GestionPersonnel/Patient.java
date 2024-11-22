@@ -80,6 +80,4 @@ public final class Patient extends Personne {
     void setSymptomes(String symptomes) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-   
 }
