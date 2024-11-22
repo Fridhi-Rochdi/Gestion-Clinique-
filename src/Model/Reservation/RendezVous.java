@@ -94,7 +94,4 @@ public sealed class RendezVous permits Facture, DossierMedical  {
         System.out.println("Rendez-vous annulé avec succès !");
     }
 
-    int getHeure() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }
