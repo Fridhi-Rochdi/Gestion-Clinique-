@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="Controller.MedicalSystemViewController">
+    <!-- Partie supérieure : Champs d'entrée -->
+    <top>
+        <GridPane hgap="10" vgap="10" padding="10">
+            <Label text="Nom du docteur :" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfDoctorName" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Nom du service :" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfServiceName" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="Description du service :" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfDescription" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        </GridPane>
+    </top>
+
+    <!-- Partie centrale : Boutons -->
+    <center>
+        <HBox spacing="10" alignment="center" padding="10">
+            <Button text="Ajouter Docteur" fx:id="btnAddDoctor"/>
+            <Button text="Supprimer Docteur" fx:id="btnRemoveDoctor"/>
+            <Button text="Afficher Liste Docteurs" fx:id="btnShowDoctors"/>
+            <Button text="Vérifier Disponibilité" fx:id="btnCheckAvailability"/>
+        </HBox>
+    </center>
+
+    <!-- Partie inférieure : Zone de sortie -->
+    <bottom>
+        <TextArea fx:id="taOutput" editable="false" prefHeight="150" wrapText="true"/>
+    </bottom>
+</BorderPane>
