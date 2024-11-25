@@ -34,4 +34,6 @@ public final class Patient extends Personne {
     public void setHistoriqueMedical(String historiqueMedical) {
         this.historiqueMedical = historiqueMedical;
     }
+
+  
 }
