@@ -14,9 +14,19 @@ import java.time.ZoneId;
 import java.util.Date;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class ViewController {
-    // Liens avec les éléments FXML
+
     @FXML
     private TableView<Patient> tablePatients;
     @FXML
@@ -46,12 +56,10 @@ public class ViewController {
     @FXML
     private TableColumn<RendezVous, Integer> columnRdvHeure;
 
-    // Données pour les tableaux
     private ObservableList<Patient> patients = FXCollections.observableArrayList();
     private ObservableList<Docteur> docteurs = FXCollections.observableArrayList();
     private ObservableList<RendezVous> rendezVous = FXCollections.observableArrayList();
 
-    // Classe de réception pour la gestion des données
     private Reception reception = new Reception(1, "Admin", "Reception", LocalDate.now(), "Hôpital", "admin123", "Responsable");
 
     @FXML
@@ -65,7 +73,6 @@ public class ViewController {
         columnDocteurSpecialite.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getSpecialite()));
         columnDocteurLicence.setCellValueFactory(data -> new SimpleIntegerProperty(data.getValue().getNumeroLicence()).asObject());
 
-       
         columnRdvDate.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDateRendezVous().toString()));
         columnRdvHeure.setCellValueFactory(data -> new SimpleIntegerProperty(data.getValue().getHeure()).asObject());
 
@@ -76,25 +83,62 @@ public class ViewController {
     }
 
     @FXML
-    private void ajouterPatient() {
-        // Exemple d'ajout d'un patient
-        Patient newPatient = new Patient(1, "Dupont", "Jean", LocalDate.of(1985, 5, 15), "123 Rue Principale", "password", "123456789", "Historique médical");
-        reception.enregistrerPatient(newPatient);
-        patients.add(newPatient);
-        System.out.println("Ajout d'un patient terminé.");
+      private void ajouterPatient() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/hello/AddPatient.fxml"));
+            VBox root = loader.load();
+
+            // Créer une nouvelle fenêtre pour la vue "AddPatient"
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Ajouter un Patient");
+            dialogStage.setScene(new Scene(root));
+            dialogStage.initModality(Modality.APPLICATION_MODAL);
+
+            AddPatientController controller = loader.getController();
+            dialogStage.showAndWait();
+
+            // Récupérer les données du patient et l'ajouter à la liste
+            Patient newPatient = controller.getPatient();
+            if (newPatient != null) {
+                patients.add(newPatient);
+                System.out.println("Patient ajouté : " + newPatient.getNom());
+            }
+            else {
+                System.out.println("Aucun Patient Ajouté.");}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 
     @FXML
     private void ajouterDocteur() {
-        // Exemple d'ajout d'un docteur
-        Docteur newDocteur = new Docteur(1, "Martin", "Paul", LocalDate.of(1970, 7, 20), "456 Avenue Centrale", "password", "Cardiologue", 12345);
-        docteurs.add(newDocteur);
-        System.out.println("Ajout d'un docteur terminé.");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/hello/AddDoctorDialog.fxml"));
+            VBox root = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Ajouter un Docteur");
+            dialogStage.setScene(new Scene(root));
+            dialogStage.initModality(Modality.APPLICATION_MODAL);
+
+            AddDoctorDialogController dialogController = loader.getController();
+            dialogStage.showAndWait();
+
+            Docteur newDocteur = dialogController.getDocteur();
+            if (newDocteur != null) {
+                docteurs.add(newDocteur);
+                System.out.println("Docteur ajouté : " + newDocteur.getNom());
+            } else {
+                System.out.println("Aucun docteur ajouté.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void planifierRendezVous() {
-        // Exemple de planification de rendez-vous
         if (!patients.isEmpty() && !docteurs.isEmpty()) {
             Patient patient = patients.get(0); // Prendre le premier patient pour l'exemple
             Docteur docteur = docteurs.get(0); // Prendre le premier docteur pour l'exemple
@@ -108,4 +152,39 @@ public class ViewController {
             System.out.println("Pas assez de données pour planifier un rendez-vous.");
         }
     }
+
+    private void afficherBienvenue() {
+        try {
+            // Charger la vue "Bienvenue"
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/hello/Welcome.fxml"));
+            VBox root = loader.load();
+
+            // Créer une nouvelle fenêtre de dialogue
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Bienvenue");
+            dialogStage.setScene(new Scene(root));
+            dialogStage.initModality(Modality.APPLICATION_MODAL);
+
+            // Afficher la fenêtre de bienvenue
+            dialogStage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+private void ouvrirPlanifierRdv() {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("PlanifierRdv.fxml"));
+        VBox root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setTitle("Planifier un Rendez-vous");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+    } catch (Exception e) {
+        System.err.println("Erreur lors de l'ouverture de la vue Planifier Rendez-vous : " + e.getMessage());
+    }
+}
+
 }

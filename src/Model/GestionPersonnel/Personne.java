@@ -92,13 +92,4 @@ public sealed class Personne permits Docteur, Patient, Reception {
                ", adresse='" + adresse + '\'' +
                '}';
     }
-    public static void main(String[] args) {
-        enregistrerUtilisateur("johndoe", "password123");
-        Personne personne = new Personne(1, "John", "Doe", LocalDate.of(1990, 1, 1), "123 rue Exemple", "password123");
-        boolean connected = personne.seConnecter("johndoe", "password123");
-        if (connected) {
-            personne.seDeconnecter();
-        }
-        personne.seDeconnecter();
-    }
 }

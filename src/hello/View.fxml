@@ -3,45 +3,59 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hello.ViewController">
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hello.ViewController"  prefWidth="1000" prefHeight="700">
     <!-- En-tête -->
     <top>
-        <Label text="Gestion Clinique" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 10; -fx-background-color: #4CAF50; -fx-text-fill: white;" alignment="CENTER"/>
+        <Label text="Gestion Clinique" 
+               style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 10; -fx-background-color: #2E86C1; -fx-text-fill: white;"
+               alignment="CENTER"/>
     </top>
 
     <!-- Contenu principal -->
     <center>
-        <VBox spacing="10" alignment="CENTER" style="-fx-padding: 20; -fx-background-color: #f4f4f4;">
+        <VBox spacing="20" alignment="CENTER" style="-fx-padding: 20; -fx-background-color: #EAECEE;">
             <!-- Gestion des patients -->
-            <VBox spacing="10">
-                <Label text="Liste des patients" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #4CAF50;"/>
-                <TableView fx:id="tablePatients" style="-fx-background-color: white; -fx-border-color: #4CAF50;">
+            <VBox spacing="15" style="-fx-background-color: #FFFFFF; -fx-padding: 15; -fx-border-color: #2E86C1; -fx-border-width: 2;">
+                <Label text="Liste des patients" 
+                       style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2E86C1;"/>
+                <TableView fx:id="tablePatients" style="-fx-background-color: white;">
                     <columns>
                         <TableColumn text="Nom" fx:id="columnPatientNom"/>
                         <TableColumn text="Prénom" fx:id="columnPatientPrenom"/>
                         <TableColumn text="Numéro Sécurité Sociale" fx:id="columnPatientSecu"/>
+                        <TableColumn text="Date de Naissance:" fx:id="columnDateNaissance"/>
+                        <TableColumn text="Adresse:" fx:id="columnAdresse"/>
+                        
                     </columns>
                 </TableView>
-                <Button text="Ajouter Patient" fx:id="btnAjouterPatient" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                <Button text="Ajouter Patient" 
+                        fx:id="btnAjouterPatient" 
+                        style="-fx-background-color: #2E86C1; -fx-text-fill: white; -fx-font-weight: bold;"
+                        onAction="#ajouterPatient"/>
             </VBox>
 
             <!-- Gestion des docteurs -->
-            <VBox spacing="10">
-                <Label text="Liste des docteurs" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #4CAF50;"/>
-                <TableView fx:id="tableDocteurs" style="-fx-background-color: white; -fx-border-color: #4CAF50;">
+            <VBox spacing="15" style="-fx-background-color: #FFFFFF; -fx-padding: 15; -fx-border-color: #2E86C1; -fx-border-width: 2;">
+                <Label text="Liste des docteurs" 
+                       style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2E86C1;"/>
+                <TableView fx:id="tableDocteurs" style="-fx-background-color: white;">
                     <columns>
                         <TableColumn text="Nom" fx:id="columnDocteurNom"/>
                         <TableColumn text="Spécialité" fx:id="columnDocteurSpecialite"/>
                         <TableColumn text="Numéro Licence" fx:id="columnDocteurLicence"/>
                     </columns>
                 </TableView>
-                <Button text="Ajouter Docteur" fx:id="btnAjouterDocteur" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                <Button text="Ajouter Docteur" 
+                        fx:id="btnAjouterDocteur" 
+                        style="-fx-background-color: #2E86C1; -fx-text-fill: white; -fx-font-weight: bold;" 
+                        onAction="#ajouterDocteur"/>
             </VBox>
 
             <!-- Gestion des rendez-vous -->
-            <VBox spacing="10">
-                <Label text="Liste des rendez-vous" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #4CAF50;"/>
-                <TableView fx:id="tableRendezVous" style="-fx-background-color: white; -fx-border-color: #4CAF50;">
+            <VBox spacing="15" style="-fx-background-color: #FFFFFF; -fx-padding: 15; -fx-border-color: #2E86C1; -fx-border-width: 2;">
+                <Label text="Liste des rendez-vous" 
+                       style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2E86C1;"/>
+                <TableView fx:id="tableRendezVous" style="-fx-background-color: white;">
                     <columns>
                         <TableColumn text="Patient" fx:id="columnRdvPatient"/>
                         <TableColumn text="Docteur" fx:id="columnRdvDocteur"/>
@@ -49,13 +63,19 @@
                         <TableColumn text="Heure" fx:id="columnRdvHeure"/>
                     </columns>
                 </TableView>
-                <Button text="Planifier Rendez-Vous" fx:id="btnPlanifierRdv" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;"/>
+               <Button text="Planifier Rendez-Vous" 
+        fx:id="btnPlanifierRdv" 
+        style="-fx-background-color: #2E86C1; -fx-text-fill: white; -fx-font-weight: bold;"
+        onAction="#ouvrirPlanifierRdv" />
+
             </VBox>
         </VBox>
     </center>
 
     <!-- Pied de page -->
     <bottom>
-        <Label text="Système de gestion hospitalière" alignment="CENTER" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-padding: 10;"/>
+        <Label text="Système de gestion hospitalière" 
+               alignment="CENTER" 
+               style="-fx-background-color: #2E86C1; -fx-text-fill: white; -fx-padding: 10;"/>
     </bottom>
 </BorderPane>
