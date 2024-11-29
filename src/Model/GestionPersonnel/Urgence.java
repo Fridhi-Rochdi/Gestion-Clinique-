@@ -20,6 +20,7 @@ public class Urgence {
     /**/
     // Attributs
     private NiveauUrgence niveauUrgence;
+<<<<<<< HEAD
     private int idPatient; // Identifiant du patient
     private int tempsAttenteEstime; // Temps d'attente estimé en minutes
     // Liste pour stocker les patients à traiter
@@ -29,6 +30,10 @@ public class Urgence {
     private int idPatient;
     private int tempsAttenteEstime; 
 >>>>>>> fd27a39bff9e563ad2b438970cb7d26606280fe1
+=======
+    private int idPatient;
+    private int tempsAttenteEstime; 
+>>>>>>> df2cbfd5dc2c8df2ee3c7a97dd5f445a2787fb20
     private static List<Urgence> listePatients = new ArrayList<>();
     // Constructeur
     public Urgence(NiveauUrgence niveauUrgence, int idPatient, int tempsAttenteEstime) {
