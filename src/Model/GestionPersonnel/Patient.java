@@ -35,5 +35,35 @@ public final class Patient extends Personne {
         this.historiqueMedical = historiqueMedical;
     }
 
+<<<<<<< HEAD
   
+=======
+    @Override
+    public String toString() {
+        return "Patient{" +
+               "numeroSecuriteSociale='" + numeroSecuriteSociale + '\'' +
+               ", historiqueMedical='" + historiqueMedical + '\'' +
+               ", nom='" + getNom() + '\'' +
+               ", prenom='" + getPrenom() + '\'' +
+               ", adresse='" + getAdresse() + '\'' +
+               ", dateNaissance=" + getDateNaissance() +
+               '}';
+    }
+
+    void setHistoriquemedicale(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    String getHistoriquemedicale() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    String getSymptomes() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void setSymptomes(String symptomes) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+>>>>>>> fd27a39bff9e563ad2b438970cb7d26606280fe1
 }
