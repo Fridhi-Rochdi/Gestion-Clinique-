@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="hello.FactureController">
+    <top>
+        <Label text="Paiement des Factures" style="-fx-font-size: 24; -fx-font-weight: bold;" alignment="CENTER"/>
+    </top>
+    <center>
+        <VBox spacing="10" alignment="CENTER" style="-fx-background-color: white; -fx-padding: 20;">
+            <HBox spacing="10">
+                <Label text="Type de Facture :" />
+                <ChoiceBox fx:id="typeFactureChoiceBox">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Assurée" />
+                            <String fx:value="Non Assurée" />
+                        </FXCollections>
+                    </items>
+                </ChoiceBox>
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Montant :" />
+                <TextField fx:id="montantField" promptText="Montant Total" />
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Assurance :" />
+                <TextField fx:id="montantAssuranceField" promptText="Montant Assurance" />
+            </HBox>
+            <Button text="Valider" fx:id="validerButton" />
+        </VBox>
+    </center>
+    <bottom>
+        <Label text="Clinique - Gestion des Paiements" alignment="CENTER" style="-fx-background-color: lightblue;" />
+    </bottom>
+</BorderPane>
