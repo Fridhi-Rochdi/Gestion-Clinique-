@@ -2,11 +2,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="10" alignment="CENTER" style="-fx-padding: 20;" fx:controller="hello.AddDoctorDialogController">
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="10" alignment="CENTER" 
+      fx:id="rootVBox"
+      style="-fx-padding: 20; 
+             -fx-background-radius: 15; 
+             -fx-background-color: linear-gradient(to bottom, #ffffff, #e0e0e0); 
+             -fx-border-radius: 15; 
+             -fx-border-color: #cccccc; 
+             -fx-border-width: 1; 
+             -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.4, 0, 5);" 
+      fx:controller="hello.AddDoctorDialogController">
+
     <Label text="Ajouter un Docteur" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
     <TextField fx:id="tfNom" promptText="Nom"/>
     <TextField fx:id="tfPrenom" promptText="Prénom"/>
     <TextField fx:id="tfSpecialite" promptText="Spécialité"/>
     <TextField fx:id="tfLicence" promptText="Numéro de Licence"/>
-    <Button text="Enregistrer" fx:id="btnEnregistrer" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" onAction="#enregistrer"/>
+    <Button text="Enregistrer" fx:id="btnEnregistrer" 
+            style="-fx-background-color: linear-gradient(to bottom, #4CAF50, #45A049); 
+                   -fx-text-fill: white; 
+                   -fx-background-radius: 5;" 
+            onAction="#enregistrer"/>
 </VBox>
