@@ -1,37 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Pos?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx" fx:controller="hello.FactureController">
     <top>
-        <Label text="Paiement des Factures" style="-fx-font-size: 24; -fx-font-weight: bold;" BorderPane.alignment="CENTER"/>
+        <Label text="Paiement des Factures" style="-fx-font-size: 30; -fx-font-weight: bold; -fx-text-fill: #007BFF; -fx-padding: 20;" BorderPane.alignment="CENTER"/>
     </top>
     <center>
-        <VBox spacing="10" alignment="CENTER" style="-fx-background-color: white; -fx-padding: 20;">
+        <VBox spacing="20" alignment="CENTER" style="-fx-background-color: white; -fx-padding: 30; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-border-color: #007BFF; -fx-border-width: 2px;">
             <children>
-                <HBox spacing="10">
+                <HBox spacing="15" alignment="CENTER">
                     <children>
-                        <Label text="Type de Facture :" />
-                        <ChoiceBox fx:id="typeFactureChoiceBox"/>
+                        <Label text="Type de Facture :" style="-fx-font-size: 14px; -fx-text-fill: #007BFF;" />
+                        <ChoiceBox fx:id="typeFactureChoiceBox" style="-fx-font-size: 14px; -fx-pref-width: 200px;"/>
                     </children>
                 </HBox>
-                <HBox spacing="10">
+                <HBox spacing="15" alignment="CENTER">
                     <children>
-                        <Label text="Montant :" />
-                        <TextField fx:id="montantField" promptText="Montant Total" />
+                        <Label text="Montant :" style="-fx-font-size: 14px; -fx-text-fill: #007BFF;" />
+                        <TextField fx:id="montantField" promptText="Montant Total" style="-fx-font-size: 14px; -fx-pref-width: 200px;"/>
                     </children>
                 </HBox>
-                <HBox spacing="10">
+                <HBox spacing="15" alignment="CENTER">
                     <children>
-                        <Label text="Assurance :" />
-                        <TextField fx:id="montantAssuranceField" promptText="Montant Assurance" />
+                        <Label text="Assurance :" style="-fx-font-size: 14px; -fx-text-fill: #007BFF;" />
+                        <TextField fx:id="montantAssuranceField" promptText="Montant Assurance" style="-fx-font-size: 14px; -fx-pref-width: 200px;"/>
                     </children>
                 </HBox>
-                <Button text="Valider" fx:id="validerButton" />
+                <HBox spacing="15" alignment="CENTER">
+                    <children>
+                        <Label text="Facture Résidente ou Normale :" style="-fx-font-size: 14px; -fx-text-fill: #007BFF;" />
+                        <ChoiceBox fx:id="typeFactureResidenceChoiceBox" style="-fx-font-size: 14px; -fx-pref-width: 200px;"/>
+                    </children>
+                </HBox>
+                <Button text="Valider" fx:id="validerButton" style="-fx-font-size: 16px; -fx-background-color: #007BFF; -fx-text-fill: white; -fx-pref-width: 100px; -fx-padding: 10px; -fx-border-radius: 5px;" />
             </children>
         </VBox>
     </center>
     <bottom>
-        <Label text="Clinique - Gestion des Paiements" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER"/>
+        <Label text="Clinique - Gestion des Paiements" style="-fx-background-color: #007BFF; -fx-text-fill: white; -fx-padding: 10px;" BorderPane.alignment="CENTER"/>
     </bottom>
 </BorderPane>
