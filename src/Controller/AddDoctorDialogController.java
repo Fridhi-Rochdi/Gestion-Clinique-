@@ -44,7 +44,6 @@ public class AddDoctorDialogController {
             alert.showAndWait();
             return;
         }
-
         // Création de l'objet Docteur avec les informations récupérées
         docteur = new Docteur(nom, specialite);  // Utilisez le constructeur correct
         docteur.setNumeroLicence(Integer.parseInt(licence));  // Mettre à jour le numéro de licence

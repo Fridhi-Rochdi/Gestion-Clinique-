@@ -64,16 +64,12 @@ public class ViewController {
         columnDateNaissance.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDateNaissance().toString()));
         columnSymptomes.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getSymptomes()));
         columnHistorique.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getHistoriqueMedical()));
-
         patientsTable.getColumns().addAll(columnNom, columnSecu, columnAdresse, columnDateNaissance, columnSymptomes, columnHistorique);
-
         Button ajouterPatientButton = new Button("Ajouter un Patient");
         ajouterPatientButton.setOnAction(event -> ouvrirFenetreAjouterPatient());
-
         patientsContent.getChildren().addAll(label, patientsTable, ajouterPatientButton);
         mainContent.getChildren().add(patientsContent);
     }
-
     private void ouvrirFenetreAjouterPatient() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AddPatient.fxml"));
@@ -91,24 +87,20 @@ public class ViewController {
             e.printStackTrace();
         }
     }
-
     public void ajouterPatient(Patient patient) {
         patients.add(patient);
     }
-
-     @FXML
- public void afficherGestionDocteurs() {
+   @FXML
+    public void afficherGestionDocteurs() {
         mainContent.getChildren().clear();
         VBox docteursContent = new VBox(20);
         Label label = new Label("Gestion des Docteurs");
         label.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
-
         TableView<Docteur> docteursTable = new TableView<>(docteurs);
         TableColumn<Docteur, String> columnNom = new TableColumn<>("Nom");
         TableColumn<Docteur, String> columnSpecialite = new TableColumn<>("Spécialité");
         TableColumn<Docteur, String> columnTelephone = new TableColumn<>("Téléphone");
         TableColumn<Docteur, String> columnEmail = new TableColumn<>("Email");
-
         columnNom.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNom()));
         columnSpecialite.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getSpecialite()));
         columnTelephone.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTelephone()));
@@ -138,12 +130,18 @@ public class ViewController {
 
             Docteur nouveauDocteur = controller.getDocteur();
             if (nouveauDocteur != null) {
-                docteurs.add(nouveauDocteur); // Ajouter à la liste observable
-                docteursTable.refresh(); // Rafraîchir le TableView
+                docteurs.add(nouveauDocteur);
+                docteursTable.refresh();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            afficherErreur("Erreur lors de l'ouverture de la fenêtre Ajouter un Docteur : " + e.getMessage());
         }
+    }
+    private void afficherErreur(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setContentText(message);
+        alert.showAndWait();
     }
  @FXML
     public void afficherGestionFactures() {
@@ -164,7 +162,7 @@ public class ViewController {
         facturesTable.getColumns().addAll(columnDatePaiement, columnMontant, columnStatut);
 
         Button ajouterFactureButton = new Button("Ajouter une Facture");
-        ajouterFactureButton.setOnAction(event -> ouvrirFenetre("/View/AddFacture.fxml", "Ajouter une Facture"));
+        ajouterFactureButton.setOnAction(event -> ouvrirFenetre("/View/FactureView.fxml", "Ajouter une Facture"));
 
         facturesContent.getChildren().addAll(label, facturesTable, ajouterFactureButton);
         mainContent.getChildren().add(facturesContent);

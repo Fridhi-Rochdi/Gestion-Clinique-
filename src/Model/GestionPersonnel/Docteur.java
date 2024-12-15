@@ -17,6 +17,10 @@ private String Email;
     public void setTelephone(String Telephone) {
         this.Telephone = Telephone;
     }
+    public String getTelephone() {
+    return this.Telephone != null ? this.Telephone : "";
+}
+
 
     public void setEmail(String Email) {
         this.Email = Email;
@@ -55,17 +59,10 @@ private String Email;
         }
     }
 
-    public String getTelephone() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public Object getDateEntree() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     public String getEmail() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return Email;
     }
+   
 
     // Classe imbriquée pour les horaires
     public class HoraireDocteur {
