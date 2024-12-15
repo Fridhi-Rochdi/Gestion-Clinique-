@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="15" alignment="CENTER"
+      style="-fx-padding: 20; 
+             -fx-background-color: linear-gradient(to bottom, #FFB6B6, #FF8C8C);
+             -fx-background-radius: 20; 
+             -fx-border-radius: 20; 
+             -fx-border-color: #FFB6B6;
+             -fx-border-width: 1; 
+             -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.5, 0, 5);"
+      fx:controller="Controller.AddDoctorDialogController">
+    <!-- Titre -->
+    <Label text="Ajouter un Docteur" 
+           style="-fx-font-size: 20px; 
+                  -fx-font-weight: bold; 
+                  -fx-text-fill: #333333;"/>
+
+    <!-- Champs TextField -->
+    <TextField fx:id="tfNom" promptText="Nom"
+               style="-fx-background-radius: 5; -fx-border-radius: 5;"/>
+    <TextField fx:id="tfPrenom" promptText="Prénom"
+               style="-fx-background-radius: 5; -fx-border-radius: 5;"/>
+    <TextField fx:id="tfSpecialite" promptText="Spécialité"
+               style="-fx-background-radius: 5; -fx-border-radius: 5;"/>
+    <TextField fx:id="tfLicence" promptText="Numéro de Licence"
+               style="-fx-background-radius: 5; -fx-border-radius: 5;"/>
+    <TextField fx:id="tfTelephone" promptText="Téléphone"
+               style="-fx-background-radius: 5; -fx-border-radius: 5;"/>
+    <TextField fx:id="tfEmail" promptText="Email"
+               style="-fx-background-radius: 5; -fx-border-radius: 5;"/>
+
+    <!-- Champ DatePicker -->
+    <DatePicker fx:id="dpDateEntree" promptText="Date d'entrée"
+                style="-fx-background-radius: 5; -fx-border-radius: 5;"/>
+
+    <!-- Bouton Enregistrer -->
+    <Button text="Enregistrer" fx:id="btnEnregistrer"
+            style="-fx-background-color: #4CAF50; 
+                   -fx-text-fill: white; 
+                   -fx-font-weight: bold; 
+                   -fx-background-radius: 5;" 
+            onAction="#enregistrerDocteur"/>
+</VBox>

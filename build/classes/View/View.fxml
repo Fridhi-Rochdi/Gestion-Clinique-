@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ViewController" prefWidth="1000" prefHeight="700">
+    <!-- Sidebar -->
+    <left>
+        <VBox prefWidth="250" style="-fx-background-color: #2C3E50; -fx-padding: 20; -fx-spacing: 20;" alignment="TOP_LEFT">
+            <children>
+                <!-- Title -->
+                <Label text="HOPITALE SMART" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;" />
+
+                <!-- Menu Buttons -->
+                <VBox spacing="15" alignment="TOP_LEFT">
+                    <Button text="Accueil" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10; -fx-cursor: hand;" onAction="#afficherBienvenue"/>
+                    <Button text="Gestion des Patients" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10; -fx-cursor: hand;" onAction="#afficherGestionPatients"/>
+                    <Button text="Gestion des Docteurs" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10; -fx-cursor: hand;" onAction="#afficherGestionDocteurs"/>
+                    <Button text="Gestion des Rendez-Vous" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10; -fx-cursor: hand;" onAction="#afficherGestionRendezVous"/>
+                     <Button text="Gestion des Factures" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10; -fx-cursor: hand;" onAction="#afficherGestionFactures"/>
+                </VBox>
+            </children>
+        </VBox>
+    </left>
+
+    <!-- Main Content -->
+    <center>
+        <StackPane fx:id="mainContent" style="-fx-padding: 20; -fx-background-color: #ECF0F1;">
+            <!-- Dynamic content will be loaded here -->
+        </StackPane>
+    </center>
+
+    <!-- Footer -->
+    <bottom>
+        <Label text="Système de gestion hospitalière" style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-padding: 10; -fx-font-size: 12px;" alignment="CENTER" />
+    </bottom>
+</BorderPane>

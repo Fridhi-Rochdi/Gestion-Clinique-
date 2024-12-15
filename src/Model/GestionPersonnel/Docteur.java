@@ -1,34 +1,44 @@
 package Model.GestionPersonnel;
+
 import Model.Reservation.Rapport;
 import Model.Reservation.RendezVous;
 import java.time.LocalDate;
-<<<<<<< HEAD
-import java.util.Date;
-public final class Docteur extends Personne {
-    private String specialite;
-    private int numeroLicence;
-=======
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public final class Docteur extends Personne {
-    private String specialite;
-    private int numeroLicence;
-    private List<HoraireDocteur> horaires; // Liste des horaires associés au docteur
+    private String specialite;               // Spécialité du docteur
+    private int numeroLicence;  
+    private String Telephone ;// Numéro de licence
+    private List<HoraireDocteur> horaires;  // Liste des horaires associés au docteur
+private String Email;
 
-    // Constructeur
->>>>>>> fd27a39bff9e563ad2b438970cb7d26606280fe1
-    public Docteur(int idPersonne, String nom, String prenom, LocalDate dateNaissance, String adresse, String motDePasse, String specialite, int numeroLicence) {
-        super(idPersonne, nom, prenom, dateNaissance, adresse, motDePasse);
-        this.specialite = specialite;
-        this.numeroLicence = numeroLicence;
-        this.horaires = new ArrayList<>();
+    public void setTelephone(String Telephone) {
+        this.Telephone = Telephone;
     }
-<<<<<<< HEAD
+
+    public void setEmail(String Email) {
+        this.Email = Email;
+    }
+    // Constructeur
+    public Docteur(String nom, String specialite) {
+    super(0, nom, "", null, "", ""); // Appel au constructeur de Personne
+    this.specialite = specialite;
+    this.numeroLicence = 0; // Valeur par défaut
+    this.horaires = new ArrayList<>();
+}
+
+    // Méthode pour rédiger un rapport
     public Rapport redigerRapport(int numRapport, Date dateRapport, String description, RendezVous rendezVous) {
         if (rendezVous == null) {
             throw new IllegalArgumentException("Le rendez-vous ne peut pas être null.");
-=======
+        }
+        Rapport rapport = new Rapport(numRapport, dateRapport, description, rendezVous);
+        System.out.println("Rapport rédigé avec succès !");
+        System.out.println("Détails du rapport : " + rapport);
+        return rapport; // Retourne le rapport créé pour un traitement ultérieur
+    }
 
     // Méthode pour ajouter un horaire
     public void ajouterHoraire(int jour, String heure) {
@@ -45,9 +55,21 @@ public final class Docteur extends Personne {
         }
     }
 
+    public String getTelephone() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Object getDateEntree() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public String getEmail() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     // Classe imbriquée pour les horaires
     public class HoraireDocteur {
-        private int jour;  // Numéro du jour (1 = Lundi, 7 = Dimanche)
+        private int jour;   // Numéro du jour (1 = Lundi, 7 = Dimanche)
         private String heure; // Heure au format "HH:mm"
 
         // Constructeur
@@ -71,21 +93,9 @@ public final class Docteur extends Personne {
         }
     }
 
-    // Méthode pour consulter un patient
-    public void consulterPatient(Patient patient) {
-        String symptomes = patient.getHistoriqueMedical();
-        if (symptomes == null || symptomes.isEmpty()) {
-            symptomes = "Symptômes non définis.";
->>>>>>> fd27a39bff9e563ad2b438970cb7d26606280fe1
-        }
-        Rapport rapport = new Rapport(numRapport, dateRapport, description, rendezVous);
-        System.out.println("Rapport rédigé avec succès !");
-        System.out.println("Détails du rapport : " + rapport);
+   
 
-        return rapport; // Retourne le rapport créé pour un traitement ultérieur
-    }
-
-    // Getters et setters (inchangés)
+    // Getters et Setters
     public String getSpecialite() {
         return specialite;
     }
@@ -93,9 +103,11 @@ public final class Docteur extends Personne {
     public void setSpecialite(String specialite) {
         this.specialite = specialite;
     }
+
     public int getNumeroLicence() {
         return numeroLicence;
     }
+
     public void setNumeroLicence(int numeroLicence) {
         this.numeroLicence = numeroLicence;
     }

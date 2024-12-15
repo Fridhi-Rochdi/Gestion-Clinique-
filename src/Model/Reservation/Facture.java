@@ -53,4 +53,8 @@ public abstract sealed class Facture extends RendezVous permits FactureAssuree, 
     public abstract void genererFacture();
 
     public abstract void payer();
+
+    public Object getId() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

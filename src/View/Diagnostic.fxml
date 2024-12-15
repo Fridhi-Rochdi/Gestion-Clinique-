@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx" fx:controller="Contrroller.DiagnosticController">
+    
+    <!-- Barre de navigation -->
+    <left>
+        <VBox alignment="CENTER" style="-fx-background-color: #4C4CFF; -fx-padding: 20px; -fx-pref-width: 200px;">
+            <children>
+                <Button text="Tableau de bord" style="-fx-background-color: #4C4CFF; -fx-text-fill: white; -fx-font-size: 16px; -fx-pref-width: 180px;"/>
+                <Button text="Patients" style="-fx-background-color: #4C4CFF; -fx-text-fill: white; -fx-font-size: 16px; -fx-pref-width: 180px;"/>
+                <Button text="Rendez-vous" style="-fx-background-color: #4C4CFF; -fx-text-fill: white; -fx-font-size: 16px; -fx-pref-width: 180px;"/>
+                <Button text="Se déconnecter" style="-fx-background-color: #FF4C4C; -fx-text-fill: white; -fx-font-size: 16px; -fx-pref-width: 180px;"/>
+            </children>
+        </VBox>
+    </left>
+
+    <!-- Contenu principal -->
+    <center>
+        <VBox spacing="20" style="-fx-background-color: white; -fx-padding: 30px;">
+            
+            <!-- Choix du patient et autres informations -->
+            <HBox spacing="10">
+                <Label text="Sélectionner Patient :" style="-fx-font-size: 14px;"/>
+                <ChoiceBox fx:id="patientChoiceBox" style="-fx-pref-width: 200px;"/>
+            </HBox>
+            
+            <HBox spacing="10">
+                <Label text="Date de consultation :" style="-fx-font-size: 14px;"/>
+                <DatePicker fx:id="consultationDatePicker" style="-fx-pref-width: 200px;"/>
+            </HBox>
+            
+            <!-- Zone de texte pour le diagnostic -->
+            <HBox spacing="10">
+                <Label text="Diagnostic :" style="-fx-font-size: 14px;"/>
+                <TextArea fx:id="diagnosticTextArea" promptText="Entrez le diagnostic ici" style="-fx-pref-width: 300px; -fx-pref-height: 150px;"/>
+            </HBox>
+            
+            <!-- Bouton pour valider -->
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Valider" fx:id="submitButton" style="-fx-background-color: #4C4CFF; -fx-text-fill: white; -fx-font-size: 16px;"/>
+            </HBox>
+            
+        </VBox>
+    </center>
+</BorderPane>
