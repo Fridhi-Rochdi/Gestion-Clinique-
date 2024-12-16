@@ -1,5 +1,4 @@
 package Controller;
-
 import Controller.AddDoctorDialogController;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -13,6 +12,13 @@ import Model.GestionPersonnel.Docteur;
 import Model.GestionPersonnel.Patient;
 import Model.Reservation.RendezVous;
 import Model.Reservation.Facture;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,6 +26,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ViewController {
+
+       private static final String PATIENTS_FILE = "patients.txt";
 
     @FXML
     private StackPane mainContent; // Conteneur principal pour le contenu dynamique
@@ -29,9 +37,9 @@ public class ViewController {
     private final ObservableList<RendezVous> rendezVous = FXCollections.observableArrayList();
     private final ObservableList<Facture> factures = FXCollections.observableArrayList();
 
-    // Initialisation
     @FXML
     private void initialize() {
+        chargerPatientsDepuisFichier(); // Charger les patients au démarrage
         afficherBienvenue();
     }
 
@@ -64,12 +72,16 @@ public class ViewController {
         columnDateNaissance.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDateNaissance().toString()));
         columnSymptomes.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getSymptomes()));
         columnHistorique.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getHistoriqueMedical()));
+
         patientsTable.getColumns().addAll(columnNom, columnSecu, columnAdresse, columnDateNaissance, columnSymptomes, columnHistorique);
+
         Button ajouterPatientButton = new Button("Ajouter un Patient");
         ajouterPatientButton.setOnAction(event -> ouvrirFenetreAjouterPatient());
+
         patientsContent.getChildren().addAll(label, patientsTable, ajouterPatientButton);
         mainContent.getChildren().add(patientsContent);
     }
+
     private void ouvrirFenetreAjouterPatient() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AddPatient.fxml"));
@@ -87,8 +99,56 @@ public class ViewController {
             e.printStackTrace();
         }
     }
+
     public void ajouterPatient(Patient patient) {
         patients.add(patient);
+        sauvegarderPatientsDansFichier(); // Sauvegarder les patients après ajout
+    }
+
+    private void chargerPatientsDepuisFichier() {
+        File file = new File(PATIENTS_FILE);
+        if (!file.exists()) return;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String ligne;
+            while ((ligne = reader.readLine()) != null) {
+                String[] donnees = ligne.split(";");
+                if (donnees.length == 6) {
+                    Patient patient = new Patient(
+                            donnees[0], // Nom
+                            donnees[1], // Numéro de sécurité sociale
+                            donnees[2], // Adresse
+                            LocalDate.parse(donnees[3]), // Date de naissance
+                            donnees[4], // Symptômes
+                            donnees[5]  // Historique médical
+                    );
+                    patients.add(patient);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            afficherErreur("Erreur lors du chargement des données des patients : " + e.getMessage());
+        }
+    }
+
+    private void sauvegarderPatientsDansFichier() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(PATIENTS_FILE))) {
+            for (Patient patient : patients) {
+                String ligne = String.join(";",
+                        patient.getNom(),
+                        patient.getNumeroSecuriteSociale(),
+                        patient.getAdresse(),
+                        patient.getDateNaissance().toString(),
+                        patient.getSymptomes(),
+                        patient.getHistoriqueMedical()
+                );
+                writer.write(ligne);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            afficherErreur("Erreur lors de la sauvegarde des données des patients : " + e.getMessage());
+        }
     }
    @FXML
     public void afficherGestionDocteurs() {
@@ -208,3 +268,4 @@ public class ViewController {
         }
     }
 }
+ 
