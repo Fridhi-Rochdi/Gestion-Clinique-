@@ -15,7 +15,7 @@ public class Main extends Application {
         
         // Configure la scène avec le contenu du fichier FXML
         primaryStage.setScene(new Scene(loader.load()));
-        primaryStage.setTitle("Gestion Clinique");
+        primaryStage.setTitle("Gestion Hospitaliare");
         primaryStage.show();
     }
 

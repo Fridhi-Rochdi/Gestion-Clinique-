@@ -26,12 +26,15 @@ private String Email;
         this.Email = Email;
     }
     // Constructeur
-    public Docteur(String nom, String specialite) {
-    super(0, nom, "", null, "", ""); // Appel au constructeur de Personne
+   public Docteur(String nom, String specialite, int numeroLicence, String telephone, String email) {
+    super(0, nom, "", null, "", ""); // Appel au constructeur de la classe parent `Personne`
     this.specialite = specialite;
-    this.numeroLicence = 0; // Valeur par défaut
+    this.numeroLicence = numeroLicence;
+    this.Telephone = telephone;
+    this.Email = email;
     this.horaires = new ArrayList<>();
 }
+
 
     // Méthode pour rédiger un rapport
     public Rapport redigerRapport(int numRapport, Date dateRapport, String description, RendezVous rendezVous) {

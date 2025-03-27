@@ -2,12 +2,27 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.*?>
-<?import javafx.animation.*?>
-<?import javafx.scene.control.ProgressBar?>
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" spacing="20" 
-      fx:controller="Controller.SplashScreenController" prefWidth="800" prefHeight="600">
-    <Label text="Bienvenue à la Gestion Clinique" 
-           style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2E86C1;" fx:id="splashText"/>
-    <!-- Barre de progression -->
-    <ProgressBar fx:id="progressBar" prefWidth="300" style="-fx-accent: #2E86C1;" />
+<?import javafx.scene.image.*?>
+<?import javafx.scene.paint.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SplashScreenController" 
+      alignment="CENTER" spacing="30" prefWidth="800" prefHeight="600">
+    
+    <!-- ImageView pour l'arrière-plan -->
+    <ImageView fitWidth="800" fitHeight="600" preserveRatio="true">
+        <Image url="/resources/welcome.jpg"/>
+    </ImageView>
+    
+    <!-- Contenu de l'écran de démarrage -->
+    <VBox alignment="CENTER" spacing="30" prefWidth="800" prefHeight="600">
+        <!-- Texte de bienvenue avec un style amélioré -->
+        <Label text="Bienvenue à la Gestion Hospitaliere" 
+               style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #2E86C1; 
+                      -fx-effect: dropshadow(gaussian, #000000, 10, 0.5, 2, 2);" fx:id="splashText" />
+        
+        <!-- Barre de progression avec une présentation moderne -->
+        <ProgressBar fx:id="progressBar" prefWidth="400" style="-fx-accent: #2E86C1; 
+                       -fx-background-color: #f0f0f0; -fx-border-radius: 20px;"/>
+    </VBox>
+
 </VBox>

@@ -1,16 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Model.GestionPersonnel;
 
-/**
- *
- * @author fridh
- */
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class Service implements AjouterDocteurService, SupprimerDocteurService, DisponibiliteDocteurService, ListeDocteursService {
     private String nomService;
@@ -41,6 +32,7 @@ public class Service implements AjouterDocteurService, SupprimerDocteurService, 
     // Méthode pour ajouter un docteur
     @Override
     public void ajouterDocteur(String docteur) {
+        // Lambda expression for adding doctor if not already present
         if (!listeDocteurs.contains(docteur)) {
             listeDocteurs.add(docteur);
             System.out.println("Docteur " + docteur + " ajouté avec succès.");
@@ -52,7 +44,9 @@ public class Service implements AjouterDocteurService, SupprimerDocteurService, 
     // Méthode pour supprimer un docteur
     @Override
     public void supprimerDocteur(String docteur) {
-        if (listeDocteurs.remove(docteur)) {
+        // Using removeIf to simplify doctor removal with lambda expression
+        boolean isRemoved = listeDocteurs.removeIf(d -> d.equals(docteur));
+        if (isRemoved) {
             System.out.println("Docteur " + docteur + " supprimé avec succès.");
         } else {
             System.out.println("Le docteur " + docteur + " n'existe pas dans la liste.");
@@ -62,6 +56,7 @@ public class Service implements AjouterDocteurService, SupprimerDocteurService, 
     // Méthode pour vérifier si un docteur est disponible
     @Override
     public boolean isDisponible(String docteur) {
-        return listeDocteurs.contains(docteur);
+        // Lambda expression for checking availability
+        return listeDocteurs.stream().anyMatch(d -> d.equals(docteur));
     }
 }

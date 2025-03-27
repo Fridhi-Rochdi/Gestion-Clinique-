@@ -29,7 +29,6 @@ public class AddDoctorDialogController {
 
     @FXML
     private void enregistrerDocteur() {
-        // Récupération des valeurs des champs de texte
         String nom = tfNom.getText().trim();
         String prenom = tfPrenom.getText().trim();
         String specialite = tfSpecialite.getText().trim();
@@ -37,25 +36,22 @@ public class AddDoctorDialogController {
         String telephone = tfTelephone.getText().trim();
         String email = tfEmail.getText().trim();
 
-        // Vérification que tous les champs sont remplis
         if (nom.isEmpty() || prenom.isEmpty() || specialite.isEmpty() || licence.isEmpty() || telephone.isEmpty() || email.isEmpty()) {
-            // Affichage d'une alerte en cas de champ vide
             Alert alert = new Alert(Alert.AlertType.ERROR, "Veuillez remplir tous les champs.");
             alert.showAndWait();
             return;
         }
-        // Création de l'objet Docteur avec les informations récupérées
-        docteur = new Docteur(nom, specialite);  // Utilisez le constructeur correct
-        docteur.setNumeroLicence(Integer.parseInt(licence));  // Mettre à jour le numéro de licence
-        docteur.setTelephone(telephone);  // Mettre à jour le téléphone
-        docteur.setEmail(email);  // Mettre à jour l'email
 
-        // Affichage d'une alerte de succès
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Docteur ajouté avec succès.");
-        alert.showAndWait();
-
-        // Fermer la fenêtre
-        fermer();
+        try {
+            docteur = new Docteur(nom, specialite, Integer.parseInt(licence), telephone, email);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Docteur ajouté avec succès.");
+            alert.showAndWait();
+            fermer();
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Le numéro de licence doit être un entier.");
+            alert.showAndWait();
+            System.err.println("Erreur de format pour le numéro de licence : " + e.getMessage());
+        }
     }
 
     @FXML

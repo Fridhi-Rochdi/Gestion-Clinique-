@@ -64,22 +64,26 @@ public class Urgence {
 
     // Méthode pour suivre un patient (affiche les détails)
     public static void suivrePatient(int idPatient) {
-        for (Urgence urgence : listePatients) {
-            if (urgence.getIdPatient() == idPatient) {
-                System.out.println("Détails du patient ID " + idPatient + ":");
-                System.out.println("Niveau d'urgence : " + urgence.getNiveauUrgence());
-                System.out.println("Temps d'attente estimé : " + urgence.getTempsAttenteEstime() + " minutes.");
-                return;
-            }
+        try {
+            Urgence urgence = listePatients.stream()
+                .filter(p -> p.getIdPatient() == idPatient)
+                .findFirst()
+                .orElseThrow(() -> new PatientIntrouvableException("Patient ID " + idPatient + " introuvable."));
+
+            System.out.println("Détails du patient ID " + idPatient + ":");
+            System.out.println("Niveau d'urgence : " + urgence.getNiveauUrgence());
+            System.out.println("Temps d'attente estimé : " + urgence.getTempsAttenteEstime() + " minutes.");
+        } catch (PatientIntrouvableException e) {
+            System.out.println(e.getMessage());
         }
-        System.out.println("Patient ID " + idPatient + " introuvable.");
     }
 
-    // Affichage de la liste des patients
     public static void afficherListePatients() {
         System.out.println("Liste des patients :");
-        for (Urgence urgence : listePatients) {
-            System.out.println("ID : " + urgence.getIdPatient() + ", Niveau : " + urgence.getNiveauUrgence() + ", Attente : " + urgence.getTempsAttenteEstime() + " minutes.");
-        }
+        listePatients.stream()
+            .map(urgence -> "ID : " + urgence.getIdPatient() + 
+                            ", Niveau : " + urgence.getNiveauUrgence() + 
+                            ", Attente : " + urgence.getTempsAttenteEstime() + " minutes.")
+            .forEach(System.out::println);
     }
 }
